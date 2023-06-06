@@ -101,3 +101,21 @@ Example: Stopwatch app
 ![taking our lef file ](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e6a9fe29-c756-4683-897f-8deb1b90b608)
 ![synthesis of our custom cell](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6c367d84-4c92-498c-a314-ad5f8d1a5e04)
 ![adjusting synthesis settings](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f0124c51-3851-4459-9c26-da2decf72a26)
+![leffileadded](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e5954398-3c5a-45f5-826e-062d7b6cfeef)
+
+![finalfloorplanrun](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8d535dbc-ad28-4eff-b1a7-e528373f0f9b)
+
+![sta slack value](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2e1cfa5f-d1f7-4d85-a4f0-3ae633f5ad96)
+![report net connections](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a94cb1ea-b236-4c7b-a07d-3bf3d655e012)
+
+
+![report net connections-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a32f286b-d1c0-42d7-a231-bffd35fd70d3)
+![picture-17](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c9af6fd7-9659-4465-8b4a-b3b7eea12449)
+
+![cts_run](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cb39bdc1-5edb-48ed-b96d-9aca0882e8c1)
+![cts file is added](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/11801e5c-9ff7-40e9-89cb-dbeccb25f0eb)
+![db is created](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/79db48d5-354e-46f4-af95-0e5e2a91ffd0)
+![writedb](https://github.com/RaagaS04/VSDPDW![can't read min and max](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cd1037d2-d28f-4589-a073-471c0d019ead)
+ORKSHOP/assets/111308508/b9acce24-0ce7-4308-9360-7d0e2d3a931f)
+![reading sdc folder](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3692de39-87f6-4cf8-bf7b-66ca5dc1a21c)
+![slackmet](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/354c168d-a7f1-495b-b3e2-b33a02369fb4)
