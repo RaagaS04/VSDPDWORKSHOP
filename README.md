@@ -2,7 +2,7 @@
 This is an overview of the notes that I wrote during the 5-day Advanced Physical Design using OpenLANE/Sky130 workshop. The aim is to utilize the open-source flow OpenLane with SKY130nm PDK to cover the whole RTL2GDS flow.
 ## 1. How to Talk to Computers?
    ![now-1](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4c89ffc3-5a14-4656-9cb6-e4173e176139)
-    * The core of the packaging will contain the chip. According to the figure, Chip is attached to the packaging.
+   * The core of the packaging will contain the chip. According to the figure, Chip is attached to the packaging.
 
       * **PADS** : A chip's internal or external signals can be sent it.
       * **CORE**: This is the location of all the digital logic.
