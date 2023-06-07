@@ -186,11 +186,26 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 ![picture-1](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f85f34e2-c90f-4d6a-b899-bea9dfaaf1ca)
 *  Without the interactive switch, the tool will run the complete flow.
 *  Importing the required packages
+*  All the designs run by OpenLANE will be extracted from the design folder.
+*  Here we consider the picorv32a design
+   ![now -41](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/586b4d1e-a2e0-43dc-9826-dce8e83dc5cd)
+   *  src: where the Verilog file for our RTL will be present. As well as the SDC information.
+   *  config.tcl: by default, characteristics of the design information are mentioned. This will override the default OpenLANE settings.
+   ![now -42](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0618feb3-fff7-4fbe-909e-57e9dec7d98e)
+*  Setting up the file system for the design:
+   ![picture-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f48430d5-de6f-48dc-b80d-15a2cc2bf28a)
+*  Here the tech.lef (layer level information) and cell level lef merged into one.
+### Reviewing files after design prep and run synthesis
+*  Here the runs directory has been created after running command run-synthesis.
+   *  tmp folder: where the temporary files are stored, and the rest of the folders will be empty.
+      ![picture-3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b8684d48-6fcb-49ff-907f-6cb6de645d90)
+      ![now -43](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/27b5d3f6-dfc9-4920-b31a-a77542f776e2)
+*  **config.tcl**: show all the default parameters taken by the run.
+*  **For synthesis**: this will run the yosys and abc synthesis
+*  **OpenLANE project :[Git link](https://github.com/efabless/openlane)** 
+*  **Calculating the D-Flip Flop count for the design**: 1613/14876= 10.8%  
 
-
-![picture-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f48430d5-de6f-48dc-b80d-15a2cc2bf28a)
-
-![picture-3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b8684d48-6fcb-49ff-907f-6cb6de645d90)
+If we check the synthesis folder for results after running run_synthesis we can see that there is a new file generated named picorv32a.synthesios.v
 ![dflipflopsno](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3775eb04-221a-4bb3-9a80-bbcaffb565ad)
 ![No of cells](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/abaeea3c-b2ea-4d1f-8165-af844abac4bc)
 ![picture -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25f7e0ea-4522-409b-8bbb-210b25e4bfe0)
