@@ -160,8 +160,32 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 *  PDK - Process Design Kit
 *  PDK has the timing libraries, the LEF files, TECH files, and Cell LEF. open_pdks directory: These foundry files are compatible and made to work with commercial EDA tools. Open PDK mitigates the issue by using scripts and      files to convert the foundry level PDKs to be compatible with the opensource EDA tools (like MAGIC, NetGen)
    *  sky130A directory: The PDK that is made compatible with our open-source environment. Here sky130A is the PDK variant.
+      ![now-35](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6a2da05e-6537-40cd-903b-c78f690ad201)
+   *  libs.ref: contains all the process-specific files (timing, lef and cell lef)
+   *  libs.tech: specific to the tool
 
+   ![now-36](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/606cef5b-e76f-4ae1-99f5-81f21848047b)
+
+*  We are working with sky130_fd_sc_hd
+   Here, sky130: process name, 130 nm
+   *  fd: for skywater foundry
+   *  sc: for standard cell library files
+   *  hd: variant of the PDK (hd: high density)
+   ![now -37](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ec1454b2-903b-4e0c-952f-46dfcd2dcf2e)
+*  techlef contains all the layer information.
+*  mag: all the MAGIC-related files
+*  lib: all the timing files containing all the process corners.
+   ![now -38](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c5c2fe58-b994-4578-91da-d67b55971a17)
+*  tt: for typical, ss: for slow slow, ff: for fast fast and PVT corners
+   ![now -39](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/853b1c46-aee7-4f9e-8b94-4285499c9314)
+*  lef files
+*  Tool environment directory:
+   ![now -40](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4365b433-0b2b-48fb-aeed-826cf25263e2)
+## Designing Preparation Step
+### Running OpenLANE EDA
 ![picture-1](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f85f34e2-c90f-4d6a-b899-bea9dfaaf1ca)
+*  Without the interactive switch, the tool will run the complete flow.
+*  Importing the required packages
 
 
 ![picture-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f48430d5-de6f-48dc-b80d-15a2cc2bf28a)
@@ -232,7 +256,6 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 ![cts file is added](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/11801e5c-9ff7-40e9-89cb-dbeccb25f0eb)
 ![db is created](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/79db48d5-354e-46f4-af95-0e5e2a91ffd0)
 ![writedb](https://github.com/RaagaS04/VSDPDW![can't read min and max](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cd1037d2-d28f-4589-a073-471c0d019ead)
-ORKSHOP/assets/111308508/b9acce24-0ce7-4308-9360-7d0e2d3a931f)
 ![reading sdc folder](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3692de39-87f6-4cf8-bf7b-66ca5dc1a21c)
 ![slackmet](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/354c168d-a7f1-495b-b3e2-b33a02369fb4)
 ![now -8](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/da5ae1cc-21b2-4a5e-88a6-5925c5d63168)
