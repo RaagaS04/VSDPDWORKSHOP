@@ -117,8 +117,49 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 *  Two modes of operation:
    *  autonomous – push button flow
    *  Interactive – run commends one by one to check intermediate steps.
+### 4. OpenLANE ASIC DESIGN FLOW
+   ![now -30](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/04e0e31d-4927-4518-8364-6ce612800870)
+### RTL Design
+*  The flow starts with the design RTL and generating the final layout in GDSII format. OpenLANE is based on several open-source projects.
+   ![now-29](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9736bd5b-8bb2-4b91-b1f5-80027e48d4b8)
+*  The flow starts with the RTL synthesis. The RTL is fed to yosys with the design constraints. Yosys translates the RTL to logic circuits. These circuits can be optimized and mapped into a standard cell library using the ABC    tool. ABC should be guided during the optimization. This guidance will come in the form of the ABC script. OpenLANE comes with several open-source scripts. We refer to them as synthesis strategies. We have strategies to      target the least area and for the best timing. Different designs can use different strategies to achieve the best objective. For this, we have synthesis exploration utility. This is used to generate a report that shows the    design delay concerning the area effected by synthesis strategy.
+   ![now-31](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/57a145ed-9dce-4eb0-bfdf-5a840a6e6866)
+### Design Exploration Utility
+*  OpenLANE also has the design exploration utility. This can be used to sweep the design configurations. And generates a report, as shown below.
+   ![now-32](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d70a3573-ee6e-44d0-bf24-8dedb802b970)
+*  This report shows the different design metrics. We have more than 35 of them in a report. It also shows the number of violations after generating the final layout. It is recommended to explore the design first and then use    the best configurations for a particular design to result in a clean layout.
+*  Also, design exploration can be used for regression testing (CI). So, we can run the design on several exploration configurations to get the best-optimized configurations. Currently, we have 70 designs. This utility will      generate a report as shown below.
+   ![now -33](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2043941d-3f30-4ce3-8c75-9eb153632f8f)
 
+*  This report shows the design metrics given different configurations and the number of violations. The results will be compared to the best-known results.
+### Design for Test
+*  If we want our design to be tested after the fabrication, we can enable DFT. This step uses open-source project Fault. To perform scan insertion, ATPG, test patterns comparison, fault coverage, and fault simulation.
+### Place and Route
+*  After this comes the physical implementation, also called automated Place and Route, done by the OpenROAD application.
+### Logic Equivlence Check
+*  We need to perform LEC checking using yosys. We compare the netlist resulting from the optimization step in PD flow with the gate-level netlist generated in synthesis. To make sure they are functionally equivalent.
+*  During the physical implementation, we have a step–fake antenna diodes insertion script to address the antenna rules violations.
+### ANTENNA Rules Violations
+*  Dealing with Antenna Rules Violations:
+   *  When a metal wire segment is fabricated, it can act as an antenna.
+      *  Reactive ion etching causes charge to accumulate on the wire.
+      *  Transistor gates can be damaged during fabrication.
+   ![now-33](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/24d43342-4248-44bb-bbb3-02c5c978aaf6)
+*  Usually, this is the job of the router.
+   *  Solutions:
+      *  a.Bridging – Attaches a higher layer intermediary. Requires the router awareness.
+      *  b.Antenna diode – Add antenna diode cell to leak away charges. Antenna diodes are provided by the SCL.
+   ![now-34](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7211541b-ae5f-48b0-8baf-1d8ec0285d4f)
+*  Fake Antenna Diode Cells are used for every cell input after placement and run antenna checker (Magic) on the routed layout. If the checker reports a violation, we replace the fake diode with the real one.
+### STA, DRC and LVS:
+*  The final steps in OpenLANE involve STA, DrC, and LVS.
+   *  Timing sign-off involves doing RC extraction from the routed layout using OpenSTA to highlight any timing violations, if there are any.
+   *  DRC – Magic has used for DRC and SPICE extraction from the layout.
+   *  LVS – Magic and Netgen are used for LVS. Extracted SPICE by MAGIC vs. Verilog netlist.
 ## Open Source EDA Tools
+*  PDK - Process Design Kit
+*  PDK has the timing libraries, the LEF files, TECH files, and Cell LEF. open_pdks directory: These foundry files are compatible and made to work with commercial EDA tools. Open PDK mitigates the issue by using scripts and      files to convert the foundry level PDKs to be compatible with the opensource EDA tools (like MAGIC, NetGen)
+   *  sky130A directory: The PDK that is made compatible with our open-source environment. Here sky130A is the PDK variant.
 
 ![picture-1](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f85f34e2-c90f-4d6a-b899-bea9dfaaf1ca)
 
