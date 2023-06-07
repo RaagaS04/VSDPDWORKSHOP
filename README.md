@@ -204,10 +204,14 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 *  **For synthesis**: this will run the yosys and abc synthesis
 *  **OpenLANE project :[Git link](https://github.com/efabless/openlane)** 
 *  **Calculating the D-Flip Flop count for the design**: 1613/14876= 10.8%  
+*  If we check the synthesis folder for results after running run_synthesis we can see that there is a new file generated named picorv32a.synthesios.v
+   ![now -44](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0a3fd524-2f83-4e2d-affe-10a605f6efeb)
+   ![dflipflopsno](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3775eb04-221a-4bb3-9a80-bbcaffb565ad)
+   ![No of cells](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/abaeea3c-b2ea-4d1f-8165-af844abac4bc)
+*  To check the synthesis statistic report
+   ![now -45](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d36d7ce0-4ed2-4e16-8832-29c97ba9cfe6)
 
-If we check the synthesis folder for results after running run_synthesis we can see that there is a new file generated named picorv32a.synthesios.v
-![dflipflopsno](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3775eb04-221a-4bb3-9a80-bbcaffb565ad)
-![No of cells](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/abaeea3c-b2ea-4d1f-8165-af844abac4bc)
+
 ![picture -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25f7e0ea-4522-409b-8bbb-210b25e4bfe0)
 ![diearea](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5aefb4d9-bf4b-4a25-8529-a929fb1b0db1)
 ![magic layo![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6aca00e2-8085-48c1-a151-46914144cbc6)
