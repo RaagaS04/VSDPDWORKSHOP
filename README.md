@@ -57,7 +57,7 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    ![NOW-20](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/73c22ffd-a930-41a8-ba95-5a1cdd40c862)
  ### **Simplified RTL to GDSII Flow**
    ![NOW -21](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cf8634d2-427e-4916-bb56-c791c9ba1ce6)
-   #### **1.Synthesis**
+   #### **1.Synthesis:**
    ![NOW-22](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3e09d1f3-4870-4ee4-a0cb-14189a42515b)
    *    Converts RTL to a circuit out of components from the standard cell library (SCL). The resulting circuit is referred to as a gate-level netlist. Gate level netlist is functional equivalent to RTL.
    *    The library building blocks, or the cells, have regular layouts. Typically, the cell layout is enclosed by a fixed-height rectangle. The cell width is variable but discrete. It is an integer of                                 multiple units called site width.
@@ -65,7 +65,7 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    *    Liberty View – Has an electrical model for the cells, such as delay and power models.
    *    HDL and SPICE behavior views for the cells. Layout view for the cells.
    *    GDS View, LEF view- abstract view.
-   ###  **2.Floor planning and power planning**
+   ###  **2.Floor planning and power planning:**
    ![NOW-23](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3d030bda-53c7-4396-97ef-8258e3e55b8b)
    
    *    The objective here is to plan the silicon area and create robust power distribution to the circuits.
@@ -75,7 +75,7 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    
    *    In power planning the power network is constructed.
    *    A chip is powered by multiple VDD and GND pins. The power pins are connected to all the components through rings and horizontal/ vertical power straps. Such parallel structures are meant to reduce                             the resistance hence the IR Drop, and to address the electromigration problem. Usually, the power distribution network uses upper metal layers as they are thicker than the lower metal layers. Hence have less                   resistance.
-   ###  **3.Placement**
+   ###  **3.Placement:**
    ![NOW-25](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/56ce3d7e-9caa-434b-92f9-c588bd99130e)
    *    Place the cells on the floorplan rows aligned with the site rows. Connected cells are placed very close to each other to reduce the interconnect delay and allow successful routing afterward.
          * Done in two steps:
@@ -84,9 +84,34 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
             * Detailed - The positions obtained from the global placement are minimally altered to be legal
    
    ![NOW-26](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5d6e9e7b-fe54-418f-94bf-24ece75f0fff)
+### 4. Clock Tree Distribution:
+   ![now-27](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/099d432e-84e0-46e5-866b-1f249fe411d1)
+  *   Deliver the clock to all sequential elements (eg, FF) with minimum skew.
+  *   Clock skew – The arrival of the clock to the different components at different times.
+### 5. Routing:
+  ![now-28](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e28387b5-6aba-4128-8436-adb55f2c43e3)
+   
+  *  Given the placement and fixed number of metal layers, it’s required to find a valid pattern of horizontal and vertical wires to implement the nets that connect the cells together. The routing uses the available metal          layers defined by the PDK. The PDK defines the pitch, tracks, and minimum width. Also, it defines the vias that are used to connect the wire signals present on the different metal layers.
+  *  The Skywater 130 nm PDK defines six routing layers. The lowest layer is called the local interconnect layer (TiN layer). All the other metal layers are aluminum layers.
+      *  Most of the routers are grid routers. They construct the routing grid out of the metal layer tracks. As the routing grid is huge, we follow the divide-and-conquer method for routing.
+         *  Global Routing: Generated routing guides.
+         *  Detailed Routing: Uses the routing guides to implement the actual wiring.
+  *  Once done with routing, we can construct the final layout.
+### 6. Physical Verification:
+  *   DRC - To make sure that the final layout follows the design rules.
+  *   LVS – To ensure the final layout matches the gate level netlist.
+  *   Timing Verification:
+      *   STA – To make sure that all the timing constraints are met. And the circuit will run at a designated clock frequency.
+### Files of Physical Design:
+*     **Tech file**: .tech contains the metal layer, connectivity between layers, DRC rules, and other definitions needed by Magic layout tool to view a single cell.
 
+*     **LEF file**: .lef is combination of tech lef (contains metal layer geometries) and cell lef (contains geometries for all cells in the standard cell library). This lef file does not contain the logic part of cells, only                     the footprint that is needed by the PnR tool.
+*     **DEF file**: .def is derived from LEF file and is used to transfer the design data from one EDA tool to another EDA tool and contains connectivity of cells of the design and is just a footprint (does not contain the                        logic part of cells) that the PnR needs. Each EDA tool to run will need to read first the LEF file runs/[date]/tmp/merged.nom.lef and the DEF file output of the previous stage's EDA tool (e.g. CTS EDA                          tool TritonCTS must first read DEF file from placement stage). So before running a stage, make sure the $::env(CURRENT_DEF) points to DEF file of previous stage or else there will be bunch of errors.
+### 2.3. Introduction to OpenLANE and Strive chipsets
+*   OpenLANE started as an open-source flow for a true open-source tape-out experiment.
+*   striVe is a family of open sourcing everything, including SoCs. (Open PDK, Open EDA, Open RTL)  
+   ![now -29](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/1df7a114-fbd2-4ec2-9361-ea94d1bbb303)
 
-      
 ## Open Source EDA Tools
 
 ![picture-1](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f85f34e2-c90f-4d6a-b899-bea9dfaaf1ca)
