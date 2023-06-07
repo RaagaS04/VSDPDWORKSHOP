@@ -4,10 +4,10 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    ![now-1](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4c89ffc3-5a14-4656-9cb6-e4173e176139)
    * The core of the packaging will contain the chip. According to the figure, Chip is attached to the packaging.
 
-      * **PADS** :A chip's internal or external signals can be sent it.
-      * **CORE** :This is the location of all the digital logic.
-      * **DIE**  :The DIE is the total chip size. The silicon wafer will be used to produce die.
-                  ![now-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/345c311b-e41b-4f01-8d65-c044e0a88aa9)
+      * **PADS** : A chip's internal or external signals can be sent it.
+      * **CORE** : This is the location of all the digital logic.
+      * **DIE**  : The DIE is the total chip size. The silicon wafer will be used to produce die.
+                ![now-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/345c311b-e41b-4f01-8d65-c044e0a88aa9)
    * Other details
       * **Foundry**– Place where the chips get manufactured.
       * **IP (Intelligent Properties)**– An Intellectual Property (IP) core in Semiconductors is a reusable unit of logic or functionality or a cell or a layout design that is normally developed with the idea of licencing to                                          multiple vendor for using as building blocks in different chip designs.
@@ -111,6 +111,12 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 *   OpenLANE started as an open-source flow for a true open-source tape-out experiment.
 *   striVe is a family of open sourcing everything, including SoCs. (Open PDK, Open EDA, Open RTL)  
    ![now -29](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/1df7a114-fbd2-4ec2-9361-ea94d1bbb303)
+*  OpenLANE main goal: 
+   To produce a clean GDSII with no human intervention. Tuned for SkyWater 130nm Open PDK. Also, support XFAB180 and GF130G. It can harden Macros and Chips to generate the final layout.
+
+*  Two modes of operation:
+   *  autonomous – push button flow
+   *  Interactive – run commends one by one to check intermediate steps.
 
 ## Open Source EDA Tools
 
