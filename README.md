@@ -25,9 +25,10 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 ## The flow of System Software:
    **1.OPERATING SYSTEM**
   *  OS Handles IO operations and allocates memory and low-level system functions. Converts the app into an assembly language program and finally into the binary language program so that the hardware understands it. The            output of the operating system is the small functions in C, C++, Java, and VB.
+   
    **2.COMPILER**
-  * These functions are taken by the respective compiler and convert them into instructions. The syntax of the instructions will depend on the type of hardware used (If the hardware is ARM, then the instructions will be           in the ARM format) -.exe file.
-     *  The instructions here will act as the abstract ISA between the hardware and the C programs.
+ *   These functions are taken by the respective compiler and convert them into instructions. The syntax of the instructions will depend on the type of hardware used (If the hardware is ARM, then the instructions will be          in the ARM format) -.exe file.
+   * The instructions here will act as the abstract ISA between the hardware and the C programs.
                    ![now -5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7097c50a-1610-47d5-8489-74075b578128)
   * We need an RTL to implement instruction specifications. The RTL is converted into a synthesized netlist (high-level specification into synthesized netlist). This will be in the form of gates.
      Above netlist generation, we follow physical design implementation.
@@ -39,23 +40,23 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 ## 2. SOC DESIGN AND OPENLANE
   *  **Introduction to all components of open-source digital ASIC design**
    * Digital ASIC design requires RTL IPs, EDA Tools (qflow, OpenROAD, OpenLANE), and PDK data.
-         * What is a PDK? The interface between the FAB and the designers.
-         * PDK – Process Design Kit
-            * Collection of files used to model a fabrication process of EDA tools used to design IC.
+   * What is a PDK? The interface between the FAB and the designers.
+       * PDK – Process Design Kit
+         * Collection of files used to model a fabrication process of EDA tools used to design IC.
                * Process design rules: DRC, LVS, PEX
                * Device Models
                * Digital Standard Cell Libraries
                * I/0 Libraries
-               ![NOW -17](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/989b1234-c5fb-49b4-b945-6dbe492f9799)
+    ![NOW -17](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/989b1234-c5fb-49b4-b945-6dbe492f9799)
    *  Google releaseD open-source PDK for ASIC implementation using open-source or close source tools.
-                        ![NOW -18](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f2a78df-5338-415f-9b0c-0f9538764fc7)
-   *   The fabrication process of SkyWater 130 nm is cheaper than advanced nodes. It covers over 6% of IC technology nodes used in the market.
-                        ![NOW -19](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2f57e2a6-7aee-4224-a6da-b17ea4057f04)
+    ![NOW -18](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f2a78df-5338-415f-9b0c-0f9538764fc7)
+   *  The fabrication process of SkyWater 130 nm is cheaper than advanced nodes. It covers over 6% of IC technology nodes used in the market.
+    ![NOW -19](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2f57e2a6-7aee-4224-a6da-b17ea4057f04)
 
  ### **ASIC Flow objective: RTL to GDS II - Also called Automated PnR and/or Physical Implementation.**
-                        ![NOW-20](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/73c22ffd-a930-41a8-ba95-5a1cdd40c862)
+   ![NOW-20](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/73c22ffd-a930-41a8-ba95-5a1cdd40c862)
  ### **Simplified RTL to GDSII Flow**
-                        ![NOW -21](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cf8634d2-427e-4916-bb56-c791c9ba1ce6)
+   ![NOW -21](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cf8634d2-427e-4916-bb56-c791c9ba1ce6)
    #### **1.Synthesis**
    ![NOW-22](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3e09d1f3-4870-4ee4-a0cb-14189a42515b)
    *    Converts RTL to a circuit out of components from the standard cell library (SCL). The resulting circuit is referred to as a gate-level netlist. Gate level netlist is functional equivalent to RTL.
@@ -66,19 +67,21 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    *    GDS View, LEF view- abstract view.
    ###  **2.Floor planning and power planning**
    ![NOW-23](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3d030bda-53c7-4396-97ef-8258e3e55b8b)
-   *     The objective here is to plan the silicon area and create robust power distribution to the circuits.
-   *     Chip floor-planning: Partition the chip die between different system building blocks and place the I/P pads.
-   *     Macro Floor Planning: Dimensions, pin locations, rows or routing tracks are definition.
+   
+   *    The objective here is to plan the silicon area and create robust power distribution to the circuits.
+   *    Chip floor-planning: Partition the chip die between different system building blocks and place the I/P pads.
+   *    Macro Floor Planning: Dimensions, pin locations, rows or routing tracks are definition.
    ![NOW-24](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/93265324-4cad-4d1e-a063-61ebbcc92c05)
+   
    *     In power planning the power network is constructed.
    *     A chip is powered by multiple VDD and GND pins. The power pins are connected to all the components through rings and horizontal/ vertical power straps. Such parallel structures are meant to reduce                              the resistance hence the IR Drop, 
          and to address the electromigration problem. Usually, the power distribution network uses upper metal layers as they are thicker than the lower metal layers. Hence have less resistance.
    ###   **3.Placement**
    ![NOW-25](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/56ce3d7e-9caa-434b-92f9-c588bd99130e)
-    *    Place the cells on the floorplan rows aligned with the site rows. Connected cells are placed very close to each other to reduce the interconnect delay and allow successful routing afterward.
-    *    Done in two steps:
-      *     Global - Tries to find the optimal placement of all the cells. Such positions are not necessarily legal. So cells may overlap or go off the sites.
-      *     Detailed - The positions obtained from the global placement are minimally altered to be legal
+   *    Place the cells on the floorplan rows aligned with the site rows. Connected cells are placed very close to each other to reduce the interconnect delay and allow successful routing afterward.
+         *    Done in two steps:
+            *     Global - Tries to find the optimal placement of all the cells. Such positions are not necessarily legal. So cells may overlap or go off the sites.
+            *     Detailed - The positions obtained from the global placement are minimally altered to be legal
    ![NOW-26](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5d6e9e7b-fe54-418f-94bf-24ece75f0fff)
 
 
