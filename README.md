@@ -79,9 +79,10 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    ###   **3.Placement**
    ![NOW-25](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/56ce3d7e-9caa-434b-92f9-c588bd99130e)
    *    Place the cells on the floorplan rows aligned with the site rows. Connected cells are placed very close to each other to reduce the interconnect delay and allow successful routing afterward.
-         *    Done in two steps:
+         *  Done in two steps:
             *     Global - Tries to find the optimal placement of all the cells. Such positions are not necessarily legal. So cells may overlap or go off the sites.
             *     Detailed - The positions obtained from the global placement are minimally altered to be legal
+   
    ![NOW-26](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5d6e9e7b-fe54-418f-94bf-24ece75f0fff)
 
 
