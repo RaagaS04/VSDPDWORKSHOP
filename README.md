@@ -7,16 +7,16 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
       * **PADS** : A chip's internal or external signals can be sent it.
       * **CORE**: This is the location of all the digital logic.
       * **DIE** :The DIE is the total chip size. The silicon wafer will be used to produce die.
-      ![now-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/345c311b-e41b-4f01-8d65-c044e0a88aa9)
+               ![now-2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/345c311b-e41b-4f01-8d65-c044e0a88aa9)
    * Other details
       * **Foundry**– Place where the chips get manufactured.
       * **IP (Intelligent Properties)**– An Intellectual Property (IP) core in Semiconductors is a reusable unit of logic or functionality or a cell or a layout design that is normally developed with the idea of licencing to multiple vendor for using as building blocks in                                            different chip designs.
       * **Macros**– Digital logic blocks
       * **RISC-V**-Instruction Set Architecture
       * **ISA** - The way we interact with computers.
-      ![now -3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7845c1f3-b13e-4e38-a7e8-792e0cacd18f)
+               ![now -3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7845c1f3-b13e-4e38-a7e8-792e0cacd18f)
       * Suppose we want a C program to run on a particular layout. The C program is compiled into an assembly language program (RISC-V assembly language program). This assembly language program is converted into a machine language program (binary language program). The bits         here will be executed in a layout, and we will get the required output.
-      ![now -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ad7e3b50-7b97-4642-96e6-dc4fc541f215)
+               ![now -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ad7e3b50-7b97-4642-96e6-dc4fc541f215)
       * The interface between RISC-V architecture and the layout is hardware description language. We implement RISC-V specifications in RTL.
 ## From software applications to hardware
       * The application software enters a block called system software. The system software converts the application software into binary language.
@@ -30,10 +30,11 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
         ![now -5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7097c50a-1610-47d5-8489-74075b578128)
       * We need an RTL to implement instruction specifications. The RTL is converted into a synthesized netlist (high-level specification into synthesized netlist). This will be in the form of gates. Above netlist generation, we follow physical design implementation.
    ![now -6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/889e3218-8f73-44fb-84c8-87bfa7e013fb)
+    
     **3.ASSEMBLER**
       * The job of the assembler is to take the instructions and convert them into binary numbers (machine language program). Based on machine language programs, the hardware executes the functions and accordingly generates the output.
         Example: Stopwatch app
-       ![now -7](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/67baa987-70d9-43c1-b3fb-a410521cdec6)
+   ![now -7](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/67baa987-70d9-43c1-b3fb-a410521cdec6)
 ## 2. SOC DESIGN AND OPENLANE
     **Introduction to all components of open-source digital ASIC design**
       * Digital ASIC design requires RTL IPs, EDA Tools (qflow, OpenROAD, OpenLANE), and PDK data.
@@ -45,26 +46,23 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
              * Digital Standard Cell Libraries
              * I/0 Libraries
    ![NOW -17](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/989b1234-c5fb-49b4-b945-6dbe492f9799)
-
-              * Google releaseD open-source PDK for ASIC implementation using open-source or close source tools.
-      
-   ![NOW -18](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f2a78df-5338-415f-9b0c-0f9538764fc7)
-      * The fabrication process of SkyWater 130 nm is cheaper than advanced nodes. It covers over 6% of IC technology nodes used in the market.
-   ![NOW -19](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2f57e2a6-7aee-4224-a6da-b17ea4057f04)
-    **ASIC Flow objective**: RTL to GDS II - Also called Automated PnR and/or Physical Implementation.
-   ![NOW-20](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/73c22ffd-a930-41a8-ba95-5a1cdd40c862)
-     **Simplified RTL to GDSII Flow**
-
-   ![NOW -21](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cf8634d2-427e-4916-bb56-c791c9ba1ce6)
-
-     **1. Synthesis**
-   ![NOW-22](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3e09d1f3-4870-4ee4-a0cb-14189a42515b)
-             *Converts RTL to a circuit out of components from the standard cell library (SCL). The resulting circuit is referred to as a gate-level netlist. Gate level netlist is functional equivalent to RTL.
-             *The library building blocks, or the cells, have regular layouts. Typically, the cell layout is enclosed by a fixed-height rectangle. The cell width is variable but discrete. It is an integer of multiple units called site width.
-             *Standard cells have a regular layout – Each has different views/ models.
-             *Liberty View – Has an electrical model for the cells, such as delay and power models.
-             *HDL and SPICE behavior views for the cells. Layout view for the cells.
-             *GDS View, LEF view- abstract view.
+            * Google releaseD open-source PDK for ASIC implementation using open-source or close source tools.
+               ![NOW -18](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f2a78df-5338-415f-9b0c-0f9538764fc7)
+            * The fabrication process of SkyWater 130 nm is cheaper than advanced nodes. It covers over 6% of IC technology nodes used in the market.
+               ![NOW -19](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2f57e2a6-7aee-4224-a6da-b17ea4057f04)
+     
+ **ASIC Flow objective**: RTL to GDS II - Also called Automated PnR and/or Physical Implementation.
+               ![NOW-20](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/73c22ffd-a930-41a8-ba95-5a1cdd40c862)
+         **Simplified RTL to GDSII Flow**
+               ![NOW -21](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cf8634d2-427e-4916-bb56-c791c9ba1ce6)
+         **1. Synthesis**
+               ![NOW-22](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3e09d1f3-4870-4ee4-a0cb-14189a42515b)
+                  *Converts RTL to a circuit out of components from the standard cell library (SCL). The resulting circuit is referred to as a gate-level netlist. Gate level netlist is functional equivalent to RTL.
+                  *The library building blocks, or the cells, have regular layouts. Typically, the cell layout is enclosed by a fixed-height rectangle. The cell width is variable but discrete. It is an integer of multiple units called site width.
+                  *Standard cells have a regular layout – Each has different views/ models.
+                  *Liberty View – Has an electrical model for the cells, such as delay and power models.
+                  *HDL and SPICE behavior views for the cells. Layout view for the cells.
+                  *GDS View, LEF view- abstract view.
      **2.Floor planning and power planning**
         
    ![NOW-23](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3d030bda-53c7-4396-97ef-8258e3e55b8b)
