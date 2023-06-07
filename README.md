@@ -73,15 +73,15 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    *    Macro Floor Planning: Dimensions, pin locations, rows or routing tracks are definition.
    ![NOW-24](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/93265324-4cad-4d1e-a063-61ebbcc92c05)
    
-   *     In power planning the power network is constructed.
-   *     A chip is powered by multiple VDD and GND pins. The power pins are connected to all the components through rings and horizontal/ vertical power straps. Such parallel structures are meant to reduce                              the resistance hence the IR Drop, 
-         and to address the electromigration problem. Usually, the power distribution network uses upper metal layers as they are thicker than the lower metal layers. Hence have less resistance.
-   ###   **3.Placement**
+   *    In power planning the power network is constructed.
+   *    A chip is powered by multiple VDD and GND pins. The power pins are connected to all the components through rings and horizontal/ vertical power straps. Such parallel structures are meant to reduce                             the resistance hence the IR Drop, and to address the electromigration problem. Usually, the power distribution network uses upper metal layers as they are thicker than the lower metal layers. Hence have less                   resistance.
+   ###  **3.Placement**
    ![NOW-25](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/56ce3d7e-9caa-434b-92f9-c588bd99130e)
    *    Place the cells on the floorplan rows aligned with the site rows. Connected cells are placed very close to each other to reduce the interconnect delay and allow successful routing afterward.
-         *  Done in two steps:
-            *     Global - Tries to find the optimal placement of all the cells. Such positions are not necessarily legal. So cells may overlap or go off the sites.
-            *     Detailed - The positions obtained from the global placement are minimally altered to be legal
+         * Done in two steps:
+            * Global - Tries to find the optimal placement of all the cells. Such positions are not necessarily legal. So cells may overlap or go off the sites.
+            
+            * Detailed - The positions obtained from the global placement are minimally altered to be legal
    
    ![NOW-26](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5d6e9e7b-fe54-418f-94bf-24ece75f0fff)
 
