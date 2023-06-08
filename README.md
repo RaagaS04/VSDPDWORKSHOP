@@ -210,8 +210,84 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    ![No of cells](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/abaeea3c-b2ea-4d1f-8165-af844abac4bc)
 *  To check the synthesis statistic report
    ![now -45](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d36d7ce0-4ed2-4e16-8832-29c97ba9cfe6)
+## DAY 2
+### Utilization factor and aspect ratio
+
+*  Define the width and height of the core and die. This is the first step in the physical design flow.
+   ![now -46](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3329facd-a116-4c48-9712-719545878cb4)
+*  Netlist defines the connectivity between all the components.
+*  In defining the dimensions of the chip, it mostly depends on the dimensions of the logic gates.
+   ![now -47](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6eabb2e5-5867-46a7-aef3-6a99bf88223e)
+*  To get the dimensions of the core and die, we are interested in the dimensions of the standard cells, not considering the wires in between them.
+*  Standard cells are given rough dimensions as shown below.
+   ![now -48](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/533dea53-c2ef-4613-a1aa-b761e44e77be)
+*  Let’s calculate the area occupied by the below netlist on a silicon wafer by bringing the cells together.
+*  What is the core and die section of a chip?
+   ![now -49](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a61a6662-7fbb-41ea-8416-81dcdc9b3fb9)
+*  Core: where we place the fundamental logic.
+*  Die piece of the area where our circuit is built so that our circuit will not exceed this area. We imprint this die multiple times on a silicon wafer to increase its throughput.
+   ![now - 50](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/afb98e18-8272-4497-894b-3681fa81c3e2)
+* As we can see that the netlist of 4 sq units occupies a complete area of the core. This means we have utilized the core 100%.
+   ![now -51](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3adcad8b-84c0-4974-9b09-7ad2bfd2c746)
+*  Utilization Factor: Area occupied by netlist/ Total area of the core = 4 x 1sq.unit/ 2 unit x 2 unit = 1
+   *  In practice, we go for a 50 to 60% utilization.
+*  Aspect Ratio = Height/ width = 2 unit/ 2 unit = 1
+*  When the aspect ratio is 1, the chip is squared in shape. Ex:
+      ![now -52](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6d6c662d-2f0c-4da6-8521-2fbe80bb33e3)
+### Concept of pre-placed cells
+   ![now -53](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2db31397-5592-4842-881b-5fc669aad044)
+*  The figure above shows that the utilization factor is 25%, and 75% is utilized for the optimization.
+   *  On top of this, we do the routing.
+    ![now -54](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ce274a47-50fb-453b-8f60-1a82d934ee20)
+*  It is supposed to be a squared chip where we have the aspect ratio as 1.
+### Locations of pre-placed cells:
+*  The cells can be divided into two blocks, as shown in the figure below. These blocks are implemented separately.
+   ![now -55](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/406c4880-2c32-4b0a-8733-937f614e561c)
+   ![now -56](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c8427e3c-fa3e-446c-9172-f3a75d2e0ecb)
+*  These blocks are invisible if we look from the top. Looking into the main netlist.
+      ![now -57](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4b6c3417-8e6b-4adb-845c-db657fc12b5e)
+*  These blocks can be used multiple times in the netlist. This concept is useful when we want the blocks to be reused. Similarly, we can have other IPs also available.
+*  All these blocks can be implemented once and can be instantiated multiple times on to a netlist.
+   ![now -58](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a2333c9c-3a70-4cff-8a1c-fdab62200c13)
+*  The placement of these cells on the top-level netlist is fixed. They are called pre-placed cells since they are placed before placement and routing. Once these locations are placed, they are not moved by automated            placement or routing tools.
+### De-coupling Capacitors
+*  These pre-placed cells should be surrounded by de-coupling capacitors.
+#### De-coupling Capacitors
+   ![now -59](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a4e042a7-290b-4954-b648-2c34c0f06e82)
+*  If there is a large distance between the power supply and a circuit in the design, there might be a voltage drop across the wire from vdd to the circuit due to the resistance, inductance, and capacitance of the wire being    used. This problem is solved using de-coupling capacitors.
+      ![now -60](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8a168cd9-6da5-4582-bdef-71d3702c8198)
+* De-coupling capacitors are huge capacitors that are filled with charge. The voltage across the de-coupling capacitor is like that across the power supply. Whenever the circuit switches, the de-coupling capacitance provides   a power supply to the circuit. This means the de-coupling capacitor de-couples the circuit from the main supply. Whenever the switching happens, the de-coupling capacitor will send the current to the circuit. These           decoupling capacitors are placed close to the circuit to reduce the voltage drop. The de-coupling capacitor supplies the amount of current needed by the circuit during switching. We use the de-coupling capacitor to charge     the circuit. Whenever there is a switching activity, the de-coupling capacitor loses some charge to the circuit. Whenever there is no switching activity, the de-coupling capacitor replenishes its charge from the power         supply.
+   ![now -61](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/33ab5cd9-58af-48cb-80f9-36883e5dfb67)
+*  This also reduces the crosstalk problem.
+### Power Planning
+*  Consider a scenario where a signal is sent from the driver to load. We must ensure the load receives the exact shape of the signal.
+*  Tapping of blocks to Vdd, and all the block ground lines are tapped to the ground.
+   ![now -62](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/864b4741-97e5-418d-9a53-efd2f624feae)
+*  To retain the same signal from the driver to the load, we need the power supply. In this region, we don’t have any de-coupling capacitor that will take the power supply switching. So, there is a possibility of voltage drop    across the line (shown in orange). Let’s assume that the line from driver to load is a 16-bit bus.
+   ![now -64](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2a4d8ced-eaaa-40e4-8f7c-b0a9504fc4cc)
+*  The capacitors shown here are charged to Vdd for logic 1 and GND for logic 0. When we pass this 16-bit bus as input to the inverter, we get the inverted output. So all the capacitors with logic 0 as output is discharged,      and with logic 1 will be charged to Vdd.
+   ![now -65](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/48180ffc-1a4d-4d4f-ad23-9ddcad2d5081)
+*  We have a single ground line for the 16-bit bus. Due to this, there is a bump over the ground line. If the size of the bump exceeds the noise margin, it will enter an undefined state. Due to the undefined state, it might      logic 1 or logic 0. This phenomenon is called a ground bounce.
+*  When all the capacitance is charged from logic 0 to logic 1 we have a voltage droop as all the capacitors are demanding the power supply at the same time. Here the voltage droop can get into to undefined region.
+   ![now -66](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5d320b02-dc06-41c3-a235-4fd6c620784f)
+*  The problem arises as the power supply is provided from one point.
+   *  Solution:
+      *  Instead of having single power supply we need to have multiple power supplies.
+   ![now -67](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2698ce3b-c395-4d17-8cc7-ee443f1211dd)
+*  Then the current demanded by the circuit can be taken from the nearest power supply. Or it will drop the current to the nearest ground. This is the reason we have multiple power and ground pins in chips.
+      ![now -68](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4aa76922-c2b1-4b47-9961-bcdc776f4f31)
+### Pin placement and logical cell placement blockage
+   ![now -69](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/da22f0fd-8f23-4540-99a6-243b39111d70)
+*  The connectivity information between the gates is coded using VHDL/ Verilog language called the “netlist.”
+*  The placement of input and output ports depends according to the cell placement in the core. And no FFs can be placed in this area where the blocks are placed. The backend team must decide on the pin placement.
+*  The CLK ports are bigger in size than the data ports. The reason for this is the CLK is the one driving all the FFs in the core. So, we need the least resistance path for clocks 1 and 2. Bigger the size lowers the            resistance.
+*  We do logical placement blockage for blocking the area so that the automated place and route tool doesn’t place cells in this area, as this area is reserved for the pin locations.
+### Running floorplan in OpenLANE
+*  Standard cells placement is done in the placement stage.
 
 
+   
+   
 ![picture -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25f7e0ea-4522-409b-8bbb-210b25e4bfe0)
 ![diearea](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5aefb4d9-bf4b-4a25-8529-a929fb1b0db1)
 ![magic layo![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6aca00e2-8085-48c1-a151-46914144cbc6)
