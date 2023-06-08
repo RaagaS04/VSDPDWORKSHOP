@@ -284,9 +284,25 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
 *  We do logical placement blockage for blocking the area so that the automated place and route tool doesn’t place cells in this area, as this area is reserved for the pin locations.
 ### Running floorplan in OpenLANE
 *  Standard cells placement is done in the placement stage.
-
-
-   
+   ![now -70](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5ef15a89-1999-4e57-b285-1bbba751367d)
+*  Here we have all the variables for the floorplan stage in the READ.md file.
+*  These variables are also called as switches in the floorplan stage.
+      ![now -71](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/758db91f-2a15-4488-9086-bdcd5e78b714)
+*  All the default values of the variables are shown here.
+*  To check all the variables associated with all PD stages.
+   ![now -72](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2b260176-336a-421a-ba15-4f01d8fc85ff)
+*  Default parameters set for floorplan stage in OpenLANE
+      ![now -73](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/efe5b780-38a7-499e-9b21-96817349be46)
+*  The lowers priority will be given to system defaults (floorplan.tcl in configurations folder), and height priority will be given to config.tcl and then sky120A_fd_sc_hd_config.tcl for setting floorplan stage variables.
+      ![now -74](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6a000a04-0cb0-490b-862a-bd53afdaba0d)
+*  Contents of config.tcl file
+   ![now -75](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ea03ba0a-e833-4ce3-8cdc-face65fdfbf6)
+*  In OpenLANE flow, the vertical and horizontal metal is one more than what we specify here.
+*  After changing the config.tcl file with core utilization of 65%, clock period 10 and vertical metal as 4, and horizontal metal as 3.
+   In OpenLANE flow, the vertical and horizontal metal is one more than what we specify here.
+   ![now -76](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9a094241-856c-440d-8af0-e6e63d2f22b4)
+*  Command to run floorplan: run_floorplan
+### Floorplan Files
    
 ![picture -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25f7e0ea-4522-409b-8bbb-210b25e4bfe0)
 ![diearea](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5aefb4d9-bf4b-4a25-8529-a929fb1b0db1)
