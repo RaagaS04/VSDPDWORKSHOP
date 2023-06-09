@@ -303,17 +303,131 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    ![now -76](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9a094241-856c-440d-8af0-e6e63d2f22b4)
 *  Command to run floorplan: run_floorplan
 ### Floorplan Files
-   
-![picture -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25f7e0ea-4522-409b-8bbb-210b25e4bfe0)
-![diearea](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5aefb4d9-bf4b-4a25-8529-a929fb1b0db1)
-![magic layo![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6aca00e2-8085-48c1-a151-46914144cbc6)
-![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/667c3573-8e2f-48f6-828b-7fe0cf2cc166)
+   ![picture -4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25f7e0ea-4522-409b-8bbb-210b25e4bfe0)
+   ![diearea](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5aefb4d9-bf4b-4a25-8529-a929fb1b0db1)
+*  Check for the variable settings
+      ![now -77](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3b332130-b492-427b-82d0-b2e18d587a7b)
+*  The highest priority will be given to sky130_sky130_fd_sc_hd_config.tcl. So, the core utilization should be changed here—then config.tcl, and then the system default variable values will be given priority for setting          variables in .tcl files.
+*  To check the floorplan results – looking at the def file, we don’t know where what is placed.
+   ![now -78](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fac20b5c-8c01-4c09-91f9-74c6612570f1)
+*  To see the actual layout after the floorplan 
+*  Command to run magic layout: magic -T 
+*/home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/bibs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def
+   ![now -79](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f97df854-5b64-4e00-95a7-06d65ee0a507)
+   ![now -80](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/076ef72a-f879-4ba8-8688-2af54895ab05)
+ 
+ ### Review floorplan layout in MAGIC
+ ![magic layo![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6aca00e2-8085-48c1-a151-46914144cbc6)
+ ![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/667c3573-8e2f-48f6-828b-7fe0cf2cc166)
+* To check vertical metal type
 ![what](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/778b390c-22ad-4168-ad87-fc20b48938b8)
-![nand](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7815c33c-5952-49b0-a670-357fd9854d9d)
+   ![now -81](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b6120aa7-cafb-4155-8b50-b47a2a70956e)
+* Tap Cells: Avoids latch-up conditions in the CMOS devices. They connect n-well to Vdd and substrate to the ground.
+   ![nand](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7815c33c-5952-49b0-a670-357fd9854d9d)
+* Standard cell are placed during the placement stage
+### Placement and Routing
 
-![picture -6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fd9f735a-fb3d-4639-a7e2-e8b82e5eb94a)
-![picture 6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2c8a77a2-8ffc-419c-8604-b9555dbec7b5)
+*  Here binding the netlist with physical cells takes place. All the gates have a physical view while representing the core like an FF, which is square in shape.
+*  In the real world, we give physical dimensions for all the gates by giving width and height. So every component of the netlist is given a proper width and height.
+   ![now -82](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/841db8c6-94c2-4fb3-b34a-ad811761766f)
+   ![now -83](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/17a19ecb-ec8f-4d41-877d-50406cf3b1c7)
+*  And the block already has the proper shape
+*  The dimensions of the cells in a design are present in a library. Library also have the timing information of all the gates.
+   *  Library files are divided into two categories:
+      *  Library files containing the shapes and sizes of cells.
+      *  Timing information of the cells.
+*  It also contains the various shapes of all the gates. Gates that are bigger and have the least resistance path. And it will be faster.
+      ![now -84](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/42b78241-875e-4f3b-aa53-4ea5ac0b5562)
+### Placement
+   ![now -85](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9f2c69c6-61d0-42e4-8d5b-bc96838dc4a5)
+*  The library has various flavors of cells in the library. We select these cells based on the timing conditions (delay information) and the size of the floorplan requirements. Placement.
+   ![now -86](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8ee6a6b2-fd23-41be-99bd-1fabf2e8093f)
+*  We must place the physical view of the netlist for the placement. We placed the cells according to the logical connectivity and placed them close together concerning the input and output pin placement.
+*  The cells are placed according to the input and output ports of the circuit, as shown in the figure. We estimate the wire length and capacitance, and based on that, we insert repeaters.
+*  If we have a large wire, we have huge resistance and capacitance associated with that wire. To maintain the signal integrity, we will reproduce the signal using buffers which are called repeaters.
+   ![now -87](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/dbdad93f-a4d1-49a4-a3f5-6018c2b82963)
+*  Based on the wire length estimation, we calculate the capacitance using the transition of a waveform using timing analysis. The higher the value of the capacitor, the amount of charge required to charge the capacitor will    be high and have the worst slew.
+*  We use buffers from Din2 to FF1, which will receive the proper signal even though we have a large wire length.
+*  The internal routes of FF2 (Yellow) are in some layers, say metal 1 and metal 2. And the connection from 1 to 2 (green) will be on metal 3.
+*  Based on the ideal conditions of the clock, we do a timing analysis. Based on this setup timing analysis, we will determine whether the placement is reasonable based on the given specifications.
+### Need for library characterization:
+*  Logic Synthesis: Convert functionality into legal hardware. The output of logic synthesis is an arrangement of gates that represent the original functionality described using an RTL. This is the proper connection of the      gates to represent the original functionality.2
+*  Floorplanning: We import the netlist that we get from logic synthesis and decide the size of the core and the die. So the width and height of the core and die are dependent on the number of gates and their sizes.
+*  Placement: We place the logic cells in the chip in such a fashion that the initial timing is met.
+*  CTS: We want the clock signal to be spread to the logic cells simultaneously at an equal time. The buffers in the figure will take care of the clock signal has got equal rise and fall times.
+*  Routing: Routing the cells. There are certain properties of the cell that should be taken care of while routing.
+*  STA: Here, we find the maximum achievable frequency of the circuit.
+   ![now -88](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/36d409b0-4099-45ba-8b04-1b0c7d5f9089)
+   ![now -89](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e2b07160-6104-433c-bf14-0edad262b65d)
+*  One thing that is common across all stages is GATES or Cells. The collection of these cells is referred to as library. The EDA tool needs to understand are timing characteristics of the gate and how it is represented in a    tool.
+   ![now -90](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/912bca1b-9513-45d5-afc9-2192f9456eee)
+### OpenLANE Placement
+*  Placement takes place in 2 stages:
+   *  1. Global Placement: Corse placement and there is no legalization. Legalization: The standard cell should be placed inside the standard cell rows, with no overlaps. We require legalization from a timing point of view.
+   *  2.Detailed placement
+*  Command: run_placement
+*  Then global placement happens. In OpenLANE, the placement takes place using a half-parameter wire length. Our objective is to reduce the overflow. If the overflow value converges, we can assume the placement is right.
+*  Command to run magic layout:
+   *magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/bibs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def
 
+*  Then we need to check our design after placement:
+   ![picture -6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fd9f735a-fb3d-4639-a7e2-e8b82e5eb94a)
+   ![picture 6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2c8a77a2-8ffc-419c-8604-b9555dbec7b5)
+*  We know that in placement the standard cells are placed and fixed.
+*  The power and ground network will be created during the placement.
+*  Standard cells are placed in a section called a library. We also have DECAP cells and MACROS placed in the library.
+*  The library also contains different gates with different functionality. It also got cells of different sizes. Based on the sizes of cells, we can decide the drive strength of cells. The bigger cells have larger drive          strength. For example, the smaller buffers have the least drive strength. It also contains cells with different threshold voltages. The variation in threshold voltage decides the speed of the cell. For example, a 0.4 Vth      inverter takes more time to switch than a 0.3 Vth inverter.
+### CELL DESIGN FLOW
+*  A cell, for example, an inverter, should follow a cell design flow. Steps:
+      *  1.Inputs: PDKs (DRC and LVS rules, SPICE models, library, and user-defined specs)
+      ![now -91](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a8d06031-7b5f-4557-93e3-539c70d42df2)
+*  SPICE model parameters: We get these parameters from the foundry.
+   ![now -92](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/25e75e66-d5ad-486d-b6b4-71a91527de90)
+### Library and User-defined Specs:
+
+*  The separation between the power rail and the ground rail decides the cell height. The cell width is dependent on the timing information. This depends on the drive strength of the cell. Lowering the value of the drive        strength of the cell can drive a few other cells at the output.
+*  The library developer must consider the supply voltage to design the cell, and they also need to take care of noise margin levels to take care of the supply voltage of the cell.
+*  Certain libraries should be built on certain metal layers. This should be taken into consideration.
+*  Pin locations are also important for developing a library.
+   ![now -93](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8dbdc152-66a0-4763-8e4a-003d12c0fcdb)
+*  The library developer is responsible for taking these inputs and developing a library cell that adheres to these inputs. 
+*  2. Design steps: circuit design, layout design, and characterization Circuit Design: 
+   We should design PMOS and NMOS transistors in such a fashion to meet the library requirements. These are mostly based on SPICE simulations.
+      ![now -94](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d76fa2c8-3fa8-4ecd-87e0-4dbf5be58608)
+      ![now -95](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/bb0187b2-2ce6-4bae-a727-7a876d784ace)
+*  Characterization: This is a step to get timing, noise, and power information (power.libs) and circuit functionality.
+*  Layout Design:
+      ![now -96](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/30eedf40-7c67-4aba-9fe5-dfb672950cac)
+*  First, we need to implement the function and derive the pmos and nmos network graphs.
+*  Art of layout – Euler’s path + stick diagram
+*  Euler’s path: The path that is traced out only once.
+      ![now -97](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/94167021-c0f7-405b-b706-e859504d2a8b)
+*  Based on Euler’s path we need to draw a stick diagram out of it.
+   ![now -98](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/14f63897-5ef3-4561-86db-d6fb1192a6ca)
+*  Then we convert this stick diagram into a layout that adheres to the DRC rules given by the foundry.
+   ![now -99](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8631dfcb-4a5b-4c71-ae16-e489874ec6ba)
+*  Typical layout from MAGIC Design tool
+*  From the layout, we can calculate cell width and cell height.
+*  Then we need to extract parasitic out of the layout and characterize that in terms of timing.
+*  CDL File: Circuit Description Language
+*  Output from a layout is GDSII, LEF (defines the width and height of the cell), extracted spice netlist (.cir)- R, C of every element in the circuit.
+### Typical characterization flow
+   ![now -100](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6e87a4d1-d09d-43f0-b048-47f16ff6bc83)
+   ![now 101](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d8ddcc4a-7194-4946-9661-6bc11a81cc85)
+*  Steps:
+   *  1.Read the model file.
+   *  2.Read extracted SPICE netlist.
+   *  3.Recognize the behavior of the buffer.
+   *  4.Read the subcircuits of the inverter.
+   *  5.Attach the necessary power sources.
+   *  6.Apply the stimulus.
+   *  7.Vary output load capacitance.
+   *  8.Provide necessary simulation.
+   *  9.Feed in all these inputs through a configuration file to characterization software called GUNA.
+   ![now -101](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3e382266-e968-4fc4-b4bf-4ade5984d5f4)
+*  GUNA – Generates timing, noise, and power.libs
+   
+   
 ![picture-8](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b770ba80-1d77-4fea-a074-5625add311c1)
 
 ![changemode2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4555994d-adda-46b2-89ce-f73756d65bb4)
