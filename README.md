@@ -317,7 +317,7 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    ![now -80](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/076ef72a-f879-4ba8-8688-2af54895ab05)
  
  ### Review floorplan layout in MAGIC
- ![magic layo![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6aca00e2-8085-48c1-a151-46914144cbc6)
+ ![magic layoutcommand](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a034427f-6ef0-49ab-a0cc-5fba61eccf80)
  ![picture 5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/667c3573-8e2f-48f6-828b-7fe0cf2cc166)
 * To check vertical metal type
 ![what](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/778b390c-22ad-4168-ad87-fc20b48938b8)
