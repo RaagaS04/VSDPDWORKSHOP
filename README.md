@@ -426,11 +426,69 @@ This is an overview of the notes that I wrote during the 5-day Advanced Physical
    *  9.Feed in all these inputs through a configuration file to characterization software called GUNA.
    ![now -101](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3e382266-e968-4fc4-b4bf-4ade5984d5f4)
 *  GUNA – Generates timing, noise, and power.libs
-   
-   
-![picture-8](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b770ba80-1d77-4fea-a074-5625add311c1)
+Timing Characterization Timing threshold definitions: variables related to waveform
 
-![changemode2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4555994d-adda-46b2-89ce-f73756d65bb4)
+*  slew_low_rise_thr: points toward the lower side of the power supply. (About 20%)
+   ![now -102](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d8c77f93-10dc-4346-8165-e24576b27173)
+*  slew_high_rise_thr: points towards the higher side of the power supply. (About 20%)
+   ![now -103](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/41ffb6d6-05d6-4fe2-8d45-bb6d3bc7213d)
+*  slew_low_fall_thr
+   ![now -104](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a0acb2c6-8576-44d6-aaff-b15220ccbea3)
+*  slew_high_fall_thr
+     ![now-104](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/84ccb695-43d7-45dc-b49a-3b6fcb2e11b2)
+*  in_rise_thr: Related to the input waveform. The threshold for the input waveform delay. (About 50%)
+   ![now -105](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b301c3de-5b24-419b-a2da-669150c203f3)
+*  in_fall_thr
+    ![now -106](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4860f8c8-502b-40bf-be80-98217a96bbc6)
+*  out_rise_thr: Related to the output waveform. The threshold for the output waveform delay. (About 50%)
+   ![now -107](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e8dc1465-bb51-4e12-9e1d-b446a6e9f639)
+*  out_fall_thr
+   ![now -108](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/549cb181-1f7d-4297-9e3c-c87a77f86651)
+*  Below are the timing variables for slew. This is two inverters in series, red is output of first inverter and blue is output of second inverter:
+   ![now -109](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0f2fcc58-1cf1-40d7-aac1-5197ff75bea4)
+*  Below are the timing variables for propagation delay. The red is input waveform and blue is output waveform of the buffer. The left side is rise delay and right side is fall delay.
+   ![now -110](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fb0278ac-06ba-4041-89dc-e2f21a94a05a)
+*  Negative propagation delay is unexpected. That means the output comes before the input so designer needs to choose correct threshold point to produce positive delay. Delay threshold is usually 50% and slew rate threshold      is usually 20%-80%.
+### IO Placer
+*  PnR is an iterative flow.
+*  Run synthesis and floorplan steps.
+*  How to change input and output pins along the core?
+*  After floorplan input and output pins are placed randomly around the core area.
+   ![now -111](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/518ca3d7-f3a5-49b0-8163-3b8db37910dc)
+*  Open the MAGIC layout tool to check the floorplan of the design
+   ![now-112](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/99403587-a98e-4a87-bdf5-84e91280c3ef)
+*  From the figure, we can see that the pins are placed at equal distances with respect to each other.
+   ![now -113](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7af3b19f-ca8a-459a-a1b5-6709762a30eb)
+*  IO placer supports 4 strategies to place our IO pins.
+   ![now -114](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6b090c21-cdce-443e-8785-b2934b6db4c5)
+   ![now -115](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a7f89545-cea6-489a-a4c4-301592da4b5a)
+*  From floorplan.tcl we can see that the IO pins are placed with mode 1 with set ::env(FP_IO_MODE) variable. With mode 1 all IO’s are placed with equal distance.
+*  Set this variable to 2 and run the floorplan again.
+*  Then again check the IO placement with the MAGIC layout tool.
+   ![changemode2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4555994d-adda-46b2-89ce-f73756d65bb4)
+   ![picture-8](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b770ba80-1d77-4fea-a074-5625add311c1)
+*  From the layout, we can see that the IO pins are stacked on top of one another.
+### VTC – SPICE Simulations (Spice deck creation for CMOS inverter)
+*  SPICE deck
+   ![now -116](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/79b1ea55-3e01-4956-b986-2ae4eabfe10d)
+1.connectivity information about the netlist. It also has the inputs that are to be provided to the simulation and tap points from where we collect the output. In the SPICE deck, we need to mention the connectivity of the       substrate too. Here we take the example of the inverter and assume the Cload value is 10fF.
+2.Define component values: The values for PMOS and NMOS. Ideally, the size of PMOS should be bigger than the NMOS. Define the values of input gate voltage. The voltages are kept in the multiples of channel length. Also,         assume the supply voltage is 2.5V.
+3.Identify the nodes: Those two points between which there is a component.
+4.Name nodes
+   ![now -116](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/996b68d3-e208-4dc1-9a0b-3ab817055838)
+   ![now -117](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/64a8ddac-e494-486b-b0ae-4e7dbe6de1e1)
+### Running ngspice
+   ![now -118](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/06daeb26-01ad-454a-933b-57befb195877)
+*  SPICE waveform conditions: Wn=Wp=0.375u, Ln,p=0.25u device (Wn/Ln=Wp/Lp=1.5)
+   ![now -119](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6aa71e9d-65ca-4743-a97f-1f0d27f3ef54)
+*  SPICE waveform conditions: Wn=0.375u, Wp=0.9375u, Ln,p=0.25u device (Wn/Ln=1.5, Wp/Lp=2.5)
+   ![now -120](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5c4edf8f-d9ae-4f6e-88e5-f3dd508c36dd)
+### CMOS robustness depends on:
+*  Switching threshold = Vin is equal to Vout. This the point where both PMOS and NMOS is in saturation or kind of turned on, and leakage current is high. If PMOS is thicker than NMOS, the CMOS will have higher switching        threshold (1.2V vs 1V) while threshold will be lower when NMOS becomes thicker.
+*  Propagation delay = rise or fall delay
+*  DC transfer analysis is used for finding switching threshold. SPICE DC analysis below uses DC input of 2.5V. Simulation operation is DC sweep from 0V to 2.5V by 0.05V steps
+Dynamic Simulation of CMOS Inverter
+   
 ![picture -9](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/62291c81-a07e-452c-bce1-7c27bb1e7ae9)
 ![picture-10](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c5b759c7-4de6-40f6-ab5a-419942d664ad)
 ![nmos](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/03d8b056-050e-4d65-8842-e8c2472d61a7)
