@@ -470,13 +470,13 @@ Timing Characterization Timing threshold definitions: variables related to wavef
 *  From the layout, we can see that the IO pins are stacked on top of one another.
 ### VTC – SPICE Simulations (Spice deck creation for CMOS inverter)
 *  SPICE deck
-   ![now -116](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/79b1ea55-3e01-4956-b986-2ae4eabfe10d)
-1.connectivity information about the netlist. It also has the inputs that are to be provided to the simulation and tap points from where we collect the output. In the SPICE deck, we need to mention the connectivity of the       substrate too. Here we take the example of the inverter and assume the Cload value is 10fF.
-2.Define component values: The values for PMOS and NMOS. Ideally, the size of PMOS should be bigger than the NMOS. Define the values of input gate voltage. The voltages are kept in the multiples of channel length. Also,         assume the supply voltage is 2.5V.
-3.Identify the nodes: Those two points between which there is a component.
-4.Name nodes
-   ![now -116](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/996b68d3-e208-4dc1-9a0b-3ab817055838)
-   ![now -117](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/64a8ddac-e494-486b-b0ae-4e7dbe6de1e1)
+                  ![now -116](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/79b1ea55-3e01-4956-b986-2ae4eabfe10d)
+            1.connectivity information about the netlist. It also has the inputs that are to be provided to the simulation and tap points from where we collect the output. In the SPICE deck, we need to mention the                           connectivity of the substrate too. Here we take the example of the inverter and assume the Cload value is 10fF.
+            2.Define component values: The values for PMOS and NMOS. Ideally, the size of PMOS should be bigger than the NMOS. Define the values of input gate voltage. The voltages are kept in the multiples of channel length.                                        Also,assume the supply voltage is 2.5V.
+            3.Identify the nodes: Those two points between which there is a component.
+            4.Name nodes
+                  ![now -116](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/996b68d3-e208-4dc1-9a0b-3ab817055838)
+                  ![now -117](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/64a8ddac-e494-486b-b0ae-4e7dbe6de1e1)
 ### Running ngspice
    ![now -118](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/06daeb26-01ad-454a-933b-57befb195877)
 *  SPICE waveform conditions: Wn=Wp=0.375u, Ln,p=0.25u device (Wn/Ln=Wp/Lp=1.5)
