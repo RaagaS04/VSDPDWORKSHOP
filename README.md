@@ -576,24 +576,62 @@ PMOS
    ![now -141](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d7f27adc-1f7a-4d97-aa17-bae156270a40)
 *   We use this extracted file to create a spice file using ngspice tool:
       ![now -142](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0b9f9841-6d01-47d5-b6d8-744b7e99de92)
-
-![vimfile](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8010c08e-f73d-4e49-bc0e-dce694cf8a67)
-![picture-13](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a2c65dce-14ba-4549-9bc9-4720ddc78bca)
-![picture-14](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e96a98e3-753f-4662-9bea-deaf863edd28)
-![correct ouput for ngspice with 2 f](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/1af6fee1-f02f-474b-bda9-f7aa0b1776f7)
+### Check the spice file:
+   ![vimfile](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8010c08e-f73d-4e49-bc0e-dce694cf8a67)
+### Lab steps to create final SPICE deck using sky130 tech
+*  The alphabets represented in the SPICE file are nodes. For PMOS, the gate is connected to node A, the drain is connected to node Y, and the source is connected to VPWR.
+*  For NMOS, the drain is connected to Y, the gate is connected to A, and the source/ substrate is to VGND.
+*  VGND should be connected to VSS. The supply voltage should be connected to VSS. We create a new node 0 and connect VDD = 3.3V and pulse signal Vg.
+      ![now -143](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/24cfd946-e9a4-4e19-9094-836c82e42bc0)
+*  The minimum value of the layout window using single grid in layout:
+      ![now -144](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/78983c4e-c78b-4f1c-9693-b8d9d85d32db)
+*  Set the scale concerning grid box size (scale=0.01u) in the SPICE file.
+*  We must also include the PMOS and NMOS lib files in the SPICE file.
+   ![now -145](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ff936440-d839-46e5-98ab-9c5b3c299f32)
+*  We must also include the definitions for the supply voltages and commands for transient analysis.
+*  We also need to change the model files in SPICE file for PMOS and NMOS.
+   ![now -146](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e08617fe-d019-4dcc-bf70-f9e0970772b7)
+   ![now -147](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/59ecf3a0-f858-4e82-b607-08e697c1b4b6)
+*  Then run the SPICE file using ngspice
+      ![picture-13](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a2c65dce-14ba-4549-9bc9-4720ddc78bca)
+      ![picture-14](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e96a98e3-753f-4662-9bea-deaf863edd28)
+*  To remove the spikes, we need to change the cload.
+   ![now -149](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/112efe9a-d545-4004-b467-2d9086169c05)
+   ![correct ouput for ngspice with 2 f](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/1af6fee1-f02f-474b-bda9-f7aa0b1776f7)
+### Characterizing a cell means finding 4 parameters.
+1.rise transition: the time taken for the output waveform to transit from 20% of the maximum value to 80% of the VDD
 ![y value](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/efda29db-b748-4d01-908a-27738e6b759e)
 ![risetime](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0592c7a9-1b81-4e55-9be7-e3afb10b3dce)
 ![0 66 rise time graph](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4e012c28-738c-4717-8fcc-8106ae1eb885)
 ![falltime](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/822a9864-c6c8-4d47-ac0b-d74663d8ce8e)
-![cellrisedelay cal](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5e141322-58b8-479b-ad40-8d8e42c6958e)
-![picture-15](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9091c4e8-93e4-4fab-b081-826701af0b27)
-![openingmagictool](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/70d6e12b-97a2-4a31-8802-967538335746)
-![picture-16](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8f62bd56-54ce-4515-91d4-c1bf995f8be9)
-![drcwhy](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3f77a0cd-1d14-4416-91c2-ea69f3ef4ee6)
+*  The difference between x0 values gives the rise transition. Around 0.64ns
+*  fall transition: the time taken for the output to fall from 80% to 20%.
+*  fall cell delay (propagation delay): the difference between the period when the output has fallen to 50% and when the input raised to 50%.
+   ![cellrisedelay cal](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5e141322-58b8-479b-ad40-8d8e42c6958e)
+*  Around 0.061ns
+*  rise cell delay (propagation delay): the time difference between the 50% of the output We need to use the layout and create a LEF file and use this file in openlane and plug it in PICORV 32 core.
+### MAGIC VLSI Layout Tool (efabless): http://opencircuitdesign.com/
+#### Downloading required files:
+   ![now -150](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e0b5e3d5-07b6-4e78-babe-8dfc85d48818)
+*  .mag files are layout files in MAGIC format.
+*  .magicrc files are the startup file for the MAGIC. It tells where to find the technology files.
+### Opening MAGIC tool:
+   ![picture-15](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9091c4e8-93e4-4fab-b081-826701af0b27)
+   ![openingmagictool](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/70d6e12b-97a2-4a31-8802-967538335746)
+*  Open met3.mag file using MAGIC:
+   ![picture-16](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8f62bd56-54ce-4515-91d4-c1bf995f8be9)
+*  Reference: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html#m3
+*  Click: to redirect to the console window.
+   ![drcwhy](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3f77a0cd-1d14-4416-91c2-ea69f3ef4ee6)
+   ![drcwhy2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/33ccf175-7d09-44a9-be12-cfc9d0d6f616)
+*  By doing this we can see the rules which are violated.
+   ![cifseeVIA2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cda40377-45ef-415c-9635-31b7a3c75411)
+* Open file poly.mag
+   ![polyres](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/60355cb2-cbcf-40da-ac74-b7a56ed5bf2e)
+*  Considering poly.9
+*  Poly resistor spacing to poly or spacing (no overlap) to diff/tap 0.480 µm
+*  Reference: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html#poly
 
-![drcwhy2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/33ccf175-7d09-44a9-be12-cfc9d0d6f616)
-![cifseeVIA2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cda40377-45ef-415c-9635-31b7a3c75411)
-![polyres](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/60355cb2-cbcf-40da-ac74-b7a56ed5bf2e)
 ![box violation](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b8fd1478-5a52-4f19-8864-27cccc75f6e4)
 ![tech load](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4b8ec39c-1195-4b00-98a7-bca87e7982ed)
 ![tracksinfo](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4355dc57-ea9d-4d32-88a8-df2c14197f99)
