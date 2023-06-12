@@ -711,36 +711,23 @@ Checking rule violation
       ![cts_run](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cb39bdc1-5edb-48ed-b96d-9aca0882e8c1)
       ![cts file is added](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/11801e5c-9ff7-40e9-89cb-dbeccb25f0eb)
       ![db is created](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/79db48d5-354e-46f4-af95-0e5e2a91ffd0)
-      ![writedb](https://github.com/RaagaS04/VSDPDW![can't read min and max](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cd1037d2-d28f-4589-a073-471c0d019ead)
+      ![writedb](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/00c3f171-87fd-435d-bc3d-1616a92116f2)
       ![reading sdc folder](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3692de39-87f6-4cf8-bf7b-66ca5dc1a21c)
       ![slackmet](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/354c168d-a7f1-495b-b3e2-b33a02369fb4)
       ![now -8](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/da5ae1cc-21b2-4a5e-88a6-5925c5d63168)
       ![now-9](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5243a798-6626-4313-872c-22a2c85506b4)
-
-![checking procs](h![tocheck cell delay](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fba5ab1c-83e8-41a9-b079-0aaa21581055)
-
-![tocheck cell delay](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/96e5d0ec-821f-4920-8b30-02ee232387c4)
-
-![includetypicallib](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cb3f7197-6b02-4454-a037-2e98c5de7e51)
-
-![slack for typical corner](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5a79881d-37e0-421c-8b49-32dc78d92449)
-![slack for typical corner2 ](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f0da2dfd-634f-49ad-a363-776d37269f08)
-
-![checking timing analysis with ideal clocks](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a4fd5e49-fafa-46e9-9461-1415f9eb1772)
-
-
-![checking timing analysis with ideal clocks2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/97239240-6b04-4e61-8473-c1e4ba3efd09)
-
-![checking timing analysis with ideal clocks3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9af35104-47ea-464c-89db-2518ae222f1f)
-![checking timing analysis with ideal clocks4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fb4a1e23-ad9e-44d1-95c3-2a46df9faec3)
-![checking timing analysis with ideal clocks5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/de441b04-2907-4a8d-89ff-b106bcf3f431)
-
-
-![chec](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/05948729-46b0-4438-b1a3-27e5648515e9)
-
-
-
-![checking timing analysis with ideal clocks6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a48553b0-290e-44b5-abf7-8dc92bb24868)
+      ![checking procs](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/07923c3d-e1ee-46c4-b0b1-d19cba6e3ea8)
+      ![tocheck cell delay](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/96e5d0ec-821f-4920-8b30-02ee232387c4)
+      ![includetypicallib](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cb3f7197-6b02-4454-a037-2e98c5de7e51)
+      ![slack for typical corner](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5a79881d-37e0-421c-8b49-32dc78d92449)
+      ![slack for typical corner2 ](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f0da2dfd-634f-49ad-a363-776d37269f08)
+      ![checking timing analysis with ideal clocks](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a4fd5e49-fafa-46e9-9461-1415f9eb1772)
+!     ![checking timing analysis with ideal clocks2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/97239240-6b04-4e61-8473-c1e4ba3efd09)
+      ![checking timing analysis with ideal clocks3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9af35104-47ea-464c-89db-2518ae222f1f)
+      ![checking timing analysis with ideal clocks4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fb4a1e23-ad9e-44d1-95c3-2a46df9faec3)
+      ![checking timing analysis with ideal clocks5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/de441b04-2907-4a8d-89ff-b106bcf3f431)
+      ![chec](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/05948729-46b0-4438-b1a3-27e5648515e9)
+      ![checking timing analysis with ideal clocks6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a48553b0-290e-44b5-abf7-8dc92bb24868)
 
 ![now-10](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/08d79c1d-4475-4055-b4b8-96329f4f8e27)
 
