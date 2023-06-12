@@ -669,15 +669,37 @@ Checking rule violation
 *  Before extracting the LEF, we need to give the cell a custom name.
     ![now -161](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7c79d5b9-3026-42c3-a5c2-d424d97989b9)
     ![now -162](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/69ddee1c-9b24-46a3-a091-4112d6315b76)
+*  Creating a LEF file
+   ![lef file creation](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a5d11fc3-060d-4d3d-a224-c86056f9ac33)
+   ![leffilecontents](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/322211b2-6f7f-4a38-a2c8-934410484832)
+### Plugging this LEF file into PICORV32A – move the LEF file into src folder
+  ![now -165](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c886d1c1-c6bb-4aaa-b976-711e9734f1b6)
+*  We need to have a library which has our cell definition for synthesis.
+*  Here the tool should map vsdinverter cell to the synthesis flow.
+   ![now -166](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2363528f-9751-41d0-b8f3-bb7cb7197a11)
+*  We need to modify our config.tcl file next.   
+   ![now -167](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/624a17a5-8560-4d04-88f5-c6943507f745)
+   ![newrunsynthesisprep](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/811eaf29-366e-4f9c-8b5c-e7e51efbc37c)
+   ![taking our lef file ](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e6a9fe29-c756-4683-897f-8deb1b90b608)
+   ![synthesis of our custom cell](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6c367d84-4c92-498c-a314-ad5f8d1a5e04)
+*  We can see that 1554 instances of our custom cell is added to the picorv32a design.
+### Introduction to delay tables
+    ![now -168](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b502e5d0-435b-40f1-8d14-4e61411aa55a)
+*  There are advantages of these AND gates in clock tree to reduce the power dissipation.
+   ![now -169](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3699bb8b-e5c6-48b8-9dac-4619ecd1412f)
+*  Here we have spitted the load of 4 Flops using 2 buffers. And the load of two buffers is given to the first buffer. We need to swap the buffers to gates, as shown. This technique is called clock gating. We have varying        input transitions at the input of the buffer and varying output load at the output of any buffer. So, we have a variety of delays. To solve this, we have delay tables.
+      ![now -170](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/bb31c426-33eb-4b29-b18f-b1bda7e819e1)
+      ![now -171](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2ed48a10-cd26-4ef0-a4b3-5fb651abc699)
+*  There are advantages of these AND gates in clock tree to reduce the power dissipation.
+      ![now -171](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/68d0a612-cbd1-43b7-8e38-5e60eb9f393a)
+*  Here we have spitted the load of 4 Flops using 2 buffers. And the load of two buffers is given to the first buffer. We need to swap the buffers to gates, as shown. This technique is called clock gating.
+*  We have varying input transitions at the input of the buffer and varying output load at the output of any buffer. So, we have a variety of delays. To solve this, we have delay tables.
+      ![now -172](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/40ed2f96-c9ef-4510-8981-4aa9eaf081a0)
+*  Here x = W/L of PMOS and NMOS. If we increase the PMOS size and NMOS size, we are reducing the resistance. By this, we are varying the RC constant.
+   ![now -173](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/816b4903-3250-4722-bfc9-e03bdf8f282f)
+### Fixing Slack
+*  SYNTH_BUFFERING: Find any high fanout nets. We want high fanout nets to be buffers. SYNTH_SIZING: Upsizing or downsizing a buffer based on delay strategy. SYNTH_DRIVING_CELL: Cell that drives the input port.
 
-   
-
-![widthshouldbeinoddmultiplesofpitch](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d6fb6148-52e6-4f9e-8aa6-32c5dd981434)
-![lef file creation](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a5d11fc3-060d-4d3d-a224-c86056f9ac33)
-![leffilecontents](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/322211b2-6f7f-4a38-a2c8-934410484832)
-![newrunsynthesisprep](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/811eaf29-366e-4f9c-8b5c-e7e51efbc37c)
-![taking our lef file ](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e6a9fe29-c756-4683-897f-8deb1b90b608)
-![synthesis of our custom cell](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6c367d84-4c92-498c-a314-ad5f8d1a5e04)
 ![adjusting synthesis settings](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f0124c51-3851-4459-9c26-da2decf72a26)
 ![leffileadded](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e5954398-3c5a-45f5-826e-062d7b6cfeef)
 
