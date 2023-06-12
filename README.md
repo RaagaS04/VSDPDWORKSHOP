@@ -630,13 +630,48 @@ PMOS
    ![polyres](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/60355cb2-cbcf-40da-ac74-b7a56ed5bf2e)
 *  Considering poly.9
 *  Poly resistor spacing to poly or spacing (no overlap) to diff/tap 0.480 µm
-*  Reference: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html#poly
+*  Refere![now-152](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2459f306-26c4-4fae-9502-f5b325cc3a66)
+Checking rule violation
+   ![now -151](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5791a125-efe5-4199-87f2-949643f6f88a)
+*  DRC section starts on 4072 line
+      ![now -152](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/77187406-852d-4865-b395-1278d18cceaf)
+*  Search for poly rules
+   ![now-152](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/232a5695-e815-4693-a0b1-933c50cc41fc)
 
-![box violation](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b8fd1478-5a52-4f19-8864-27cccc75f6e4)
-![tech load](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4b8ec39c-1195-4b00-98a7-bca87e7982ed)
-![tracksinfo](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4355dc57-ea9d-4d32-88a8-df2c14197f99)
-![convergegridtotrack](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0b909dfa-5acf-4183-a846-b3e644e36167)
-![rule1checkedforrouting](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/58d73fa4-a25f-4c31-b06d-beaa46d94e1d)
+*  Adding spacing to add whats missing in the file
+*  Changing all the contact rules pertaining to poly
+   ![now -153](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/daaea91b-0dd4-49d7-b314-6c103d394bb8)
+   ![now -154](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/bf40268b-4625-4283-9597-fda3995cb7f5)
+   ![box violation](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b8fd1478-5a52-4f19-8864-27cccc75f6e4)
+   ![tech load](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4b8ec39c-1195-4b00-98a7-bca87e7982ed)
+### DAY 4
+   ### Lab steps to convert grid info to track information
+ * Open inverter mag file
+   ![now -155](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b49d3e93-b4a7-49a8-bea2-79b7bbecb769)
+*  LEF file have the information about the input, power, and ground ports.
+*  We need to extract LEF file from the .mag file. 1.The input port and output port must lie on the vertical and horizontal tracks. 2.Width of the standard cell must be in odd multiples of the track pitch. 3.Height should be    in the order of vertical pitch.
+*  What is a track?
+   Tracks are used during the routing stage. Routes can go over the tracks. Routes are the metal traces. PnR is an automated flow. We need to specify where our routes are to go. Tracks give that specification. Using these        tracks, PnR can route the metal layers.
+      ![now -156](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/91f4feb7-6c25-4649-8e86-d5610d3d0c2d)
+      ![tracksinfo](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4355dc57-ea9d-4d32-88a8-df2c14197f99)
+*  Press g to get the grid view.
+   ![convergegridtotrack](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0b909dfa-5acf-4183-a846-b3e644e36167)
+*  Input A and output Y are on the horizontal and vertical tracks as shown in figure. This ensures that the route can reach that port for X and Y directions.
+   ![rule1checkedforrouting](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/58d73fa4-a25f-4c31-b06d-beaa46d94e1d)
+### Convert magic layout to std cell LEF
+*  The width of the standard cell should be in the odd multiples of the X-pitch.
+*  Port information is required only when we need to extract the LEF file. When we extract the LEF file, these ports are defined as pins of the macro.
+*  Converting labels to ports:
+   ![now -157](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cd6d4584-4081-44ca-bb1d-4f7b66e262c4)
+*  How does the tool know A is input and Y is an output port?
+*  We use port class and port use attributes.
+*  Once these parameters are set, we can extract the LEF file from a cell/ macro.
+*  Before extracting the LEF, we need to give the cell a custom name.
+    ![now -161](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7c79d5b9-3026-42c3-a5c2-d424d97989b9)
+    ![now -162](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/69ddee1c-9b24-46a3-a091-4112d6315b76)
+
+   
+
 ![widthshouldbeinoddmultiplesofpitch](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d6fb6148-52e6-4f9e-8aa6-32c5dd981434)
 ![lef file creation](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a5d11fc3-060d-4d3d-a224-c86056f9ac33)
 ![leffilecontents](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/322211b2-6f7f-4a38-a2c8-934410484832)
