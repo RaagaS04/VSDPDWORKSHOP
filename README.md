@@ -487,7 +487,56 @@ Timing Characterization Timing threshold definitions: variables related to wavef
 *  Switching threshold = Vin is equal to Vout. This the point where both PMOS and NMOS is in saturation or kind of turned on, and leakage current is high. If PMOS is thicker than NMOS, the CMOS will have higher switching        threshold (1.2V vs 1V) while threshold will be lower when NMOS becomes thicker.
 *  Propagation delay = rise or fall delay
 *  DC transfer analysis is used for finding switching threshold. SPICE DC analysis below uses DC input of 2.5V. Simulation operation is DC sweep from 0V to 2.5V by 0.05V steps
-Dynamic Simulation of CMOS Inverter
+*  Dynamic Simulation of CMOS Inverter
+   ![now -121](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2d6ac41f-259c-4254-8657-8e1054539515)
+*  Here we do a transient analysis of a CMOS inverter with a pulse as an input waveform.
+   ![now -122](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/eee4aef6-b09c-4cb7-a6d6-53ecc558f6cd)
+*  Calculating rise delay: Here, we need to find a point where output rises
+   ![now-123](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a6958317-0895-4a0a-9706-2763685b2926)
+*  Select points at 1.25V on the graph for input pulse and output waveform.
+*  Rise delay = around 148 ps delay (subtracting x values)
+   ![now -123](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5da88ed3-a774-4ded-91cd-f7160f20641e)
+*  Calculating fall delay: Here, we need to find a point where output falls
+   ![now -124](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c373f0df-aa6f-4bb6-9b4a-66c4061ab550)
+*  Fall delay = around 71 ps delay (subtracting x values)
+   ![now -125](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/dac464e3-0550-4dce-be44-031320e8f57f)
+
+### Standard cell design and characterization using openlane flow GitHub repo:
+    https://github.com/nickson-jose/vsdstdcelldesign
+*  Copying sky130A.tech files to git repo folder
+   ![now -126](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0efcd0d8-d9be-4cd9-b796-7dc2dbb970a3)
+*  Verify if the tech file is copied
+   ![now -127](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ba0b7a8a-ca95-4ddd-9f79-c52910921b2e)
+*  Open inverter circuit with MAGIC layout tool with sky130A.tech file
+*  Command: magic -T sky130A.tech sky130_inv.mag &
+   ![now -128](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/41719002-b6b9-486a-8284-e06870066dd2)
+### CMOS Fabrication Process (16-Mask CMOS Process):
+1.Selecting a substrate = Layer where the IC is fabricated. Most commonly used is P-type substrate
+2.Creating active region for transistor = Separate the transistor regions using SiO2 as isolation
+  Mask 1 = Covers the photoresist layer that must not be etched away (protects the two transistor active regions) Photoresist layer = Can be etched away via UV light Si3N4 layer = Protection layer to prevent SiO2 layer to       grow during oxidation (oxidation furnace) SiO2 layer = Grows during oxidation (LOCOS = Local Oxidation of Silicon) and will act as isolation regions between transistors or active regions
+   ![now -129](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/68811095-3dbc-4fe6-82eb-5badef58ea46)
+3.N-Well and P-Well Fabrication = Fabricate the substrate needed by PMOS (N-Well) and NMOS (P-Well)
+  Phosporus (5 valence electron) is used to form N-well Boron (3 valence electron) is used to form P-Well. Mask 2 protects the N-Well (PMOS side) while P-Well (NMOS side) is being fabricated then Mask 3 while N-Well (PMOS       side) is being fabricated
+   ![now -216](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/016e468f-5220-486e-98a2-4ef6f8e3df76)
+4.Formation of Gate = Gate fabrication affects threshold voltage. Factors affecting threshold voltage includes:
+   ![now -219](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9169ed8e-a567-4404-ae28-ca4d7bd34c59)
+   Main parameters are:
+   Doping Concentration = Controlled by ion implantation (Mask 4 for Boron implantation in NMOS P-Well and Mask 5 for Arsenic implantation in PMOS N-Well) Oxide capacitance = Controlled by oxide thickness (SiO2 layer is          removed then rebuilt to the desire thickness) Mask 6 is for gate formation using polysilicon layer.
+      ![now -220](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d6f2df31-010a-463f-88fc-4205062d1ce1)
+5.Lightly Doped Drain formation = Before forming the source and drain layer, lightly doped impurity is added:
+  Mask 7 for N- implantation (lightly doped N-type) for NMOS Mask 8 for P- implantation (lightly doped P-type) for PMOS. Heavily doped impurity (N+ for NMOS and P+ for PMOS) is for the actual source and drain but the lightly   doped impurity will help maintain spacing between the source and drain and prevent hot electron effect and short channel effect.
+   ![now -130](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f803701-c075-4fcb-8680-ef0ab1099c28)
+6.Source and Drain Formation = Mask 9 is for N+ implantation and Mask 10 for P+ implantation
+  Channeling is when implantations dig too deep into substrate so add screen oxide before implantation The side-wall spacers maintains the N-/P- while implanting the N+/P+
+   ![now -132](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e1e566c9-8772-474b-bdf0-c674ca8f86ec)
+7.Form Contacts and Interconnects = TiN is for local interconnections and also for bringing contacts to the top. TiS2 is for the contact to the actual Drain-Gate-Source. Mask 11 is for etching off the TiN interconnect for the   first layer contact.
+   ![now -221](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b386a996-69f9-48cd-98b2-2725b6ce10d9)
+8.Higher Level Metal Formation = We need to planarize first the layer via CMP before adding a metal interconnect. Aluminum contact is used to connect the lower contact to higher metal layer. Process is repeated until the       contact reached the outermost layer.
+   Mask 12 is for first contact hole Mask 13 is for first Aluminum contact layer Mask 14 is for second contact hole Mask 15 is for second Aluminum contact layer. Mask 16 is for making contact to topmost layer.
+   ![image](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a124b04c-55cd-45b5-9ebb-331726cceda7)
+
+
+
    
 ![picture -9](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/62291c81-a07e-452c-bce1-7c27bb1e7ae9)
 ![picture-10](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c5b759c7-4de6-40f6-ab5a-419942d664ad)
