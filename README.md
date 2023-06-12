@@ -525,25 +525,58 @@ Timing Characterization Timing threshold definitions: variables related to wavef
       ![now -220](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d6f2df31-010a-463f-88fc-4205062d1ce1)
 5.Lightly Doped Drain formation = Before forming the source and drain layer, lightly doped impurity is added:
   Mask 7 for N- implantation (lightly doped N-type) for NMOS Mask 8 for P- implantation (lightly doped P-type) for PMOS. Heavily doped impurity (N+ for NMOS and P+ for PMOS) is for the actual source and drain but the lightly   doped impurity will help maintain spacing between the source and drain and prevent hot electron effect and short channel effect.
-   ![now -130](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f803701-c075-4fcb-8680-ef0ab1099c28)
+      ![now -130](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4f803701-c075-4fcb-8680-ef0ab1099c28)
 6.Source and Drain Formation = Mask 9 is for N+ implantation and Mask 10 for P+ implantation
   Channeling is when implantations dig too deep into substrate so add screen oxide before implantation The side-wall spacers maintains the N-/P- while implanting the N+/P+
-   ![now -132](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e1e566c9-8772-474b-bdf0-c674ca8f86ec)
+      ![now -132](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e1e566c9-8772-474b-bdf0-c674ca8f86ec)
+
 7.Form Contacts and Interconnects = TiN is for local interconnections and also for bringing contacts to the top. TiS2 is for the contact to the actual Drain-Gate-Source. Mask 11 is for etching off the TiN interconnect for the   first layer contact.
-   ![now -221](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b386a996-69f9-48cd-98b2-2725b6ce10d9)
+      ![now -221](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b386a996-69f9-48cd-98b2-2725b6ce10d9)
+
 8.Higher Level Metal Formation = We need to planarize first the layer via CMP before adding a metal interconnect. Aluminum contact is used to connect the lower contact to higher metal layer. Process is repeated until the       contact reached the outermost layer.
-   Mask 12 is for first contact hole Mask 13 is for first Aluminum contact layer Mask 14 is for second contact hole Mask 15 is for second Aluminum contact layer. Mask 16 is for making contact to topmost layer.
-   ![image](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a124b04c-55cd-45b5-9ebb-331726cceda7)
-
-
-
    
-![picture -9](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/62291c81-a07e-452c-bce1-7c27bb1e7ae9)
-![picture-10](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c5b759c7-4de6-40f6-ab5a-419942d664ad)
-![nmos](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/03d8b056-050e-4d65-8842-e8c2472d61a7)
-![gitclone](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/443b0836-23e9-41cf-9262-63410e7380f1)
-![picture-11](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/4161d231-7173-42d3-b951-e8ba3efeedce)
-![picture-12](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c97acf68-9a4f-4cff-b2b5-9f439a7035ca)
+   Mask 12 is for first contact hole Mask 13 is for first Aluminum contact layer Mask 14 is for second contact hole Mask 15 is for second Aluminum contact layer. Mask 16 is for making contact to topmost layer.
+      ![now -131](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f55eb351-f270-401f-98ee-a9343880f668)
+### MAGIC Inverter Layout
+*  In MAGIC the first layer is the local interconnect layer (locali).
+      *  metal 1: purple color
+      *  metal 2: pink color
+      *  nwell: solid dashed lines
+      *  ndiff: green color
+      *  pdiff: brown color
+ * When a poly crosses a ndiff it’s a nmos. Similarly, when a ploy crosses a pdiff it’s a pmos.
+   ![now -133](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a6ec25bb-93e8-42f3-a139-ef1f6f8f3b9f)
+NMOS
+   ![now -134](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/7ba9621c-30c6-4b09-86bf-ec8b91f2baef)
+
+PMOS
+*  To check whether the drain of PMOS is connected to the drain of NMOS. (Press s 3 times)
+   ![now -136](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e7a07b41-a880-4fd6-a7ce-c9d4ee9c0b6f)
+*  According to the CMOS definition, the source of the PMOS should be connected to VDD and the source to the ground.
+   ![now -137](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9c84fd55-f68c-4468-b2d9-4de5ba738a44)
+   ![now -138](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f5ff7f1d-99d3-4eb2-b007-65cb2bcc6e1b)
+*  Refer to the GitHub link for more information on how to build a CMOS.
+*  For placement of any macro, we don’t need information on the logic. We only need to know the boundaries (LEF file).
+*  LEF also serves to protect the IP. LEF is also called as frame view.
+*  N-substrate diff: The N-SUBSTRATE DIFFUSION layer represents the substrate region where N-type (negative charge carriers) diffusion occurs. This diffusion process creates the N-well, commonly used in complementary MOS        (CMOS) technology, to form the body of P-channel transistors.
+*  N-substrate contact: In CMOS technology, the N-well is a substrate region doped with N-type impurities to create a well of positive charge carriers. The N-SUBSTRATE CONTACT is a contact structure that establishes an          electrical connection between the metal layer and the N-well region. It allows for the routing of signals or the application of voltage to the N-well.
+*  metal 1: In an NMOS (N-channel Metal-Oxide-Semiconductor) transistor, Metal 1 connections refer to the metal layer used for routing signals and providing interconnections in the integrated circuit layout. Metal 1 is          typically the first metal layer above the active transistor area. In NMOS transistors, Metal 1 connections are used to establish electrical connections to various transistor components, such as the source, drain, and gate.    These connections are typically made using metal traces or wires patterned on the integrated circuit layout.
+*  nwell: nwell refers to the N-type well region that is created within the P-type substrate.
+   ![now -139](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e4e919f9-f7aa-4faf-ad03-2431b1c39cb9)
+*  licon is the connectivity between the iocali layer and metal 1. There need to be a contact between the nwell and licon. The crossed line is the n-substrate contact (first contact). This is the contact between nwell and        locali.
+*  PMOS: Nwell -> above that locali layer -> above that metal 1
+*  Nwell and locali connection by nsubstrate contact.
+*  For locali and Metal 1, we have licon.
+*  Since nmos has not well, it is directly we have direct psubstrate. We have first contact between psubstrate and locali. Then the contact between locali and metal 1.
+*  We need to ensure that the final design is DRC clean.
+*  To know the logical function of the cell, we need to extract the SPICE. Then, we do simulations using ngspice tool.
+### Extracting SPICE:      
+   ![now -140](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/2de4494f-4c8b-43c0-8591-753b6682f21c)
+### Checking extracted file:
+   ![now -141](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/d7f27adc-1f7a-4d97-aa17-bae156270a40)
+*   We use this extracted file to create a spice file using ngspice tool:
+      ![now -142](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/0b9f9841-6d01-47d5-b6d8-744b7e99de92)
+
 ![vimfile](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/8010c08e-f73d-4e49-bc0e-dce694cf8a67)
 ![picture-13](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a2c65dce-14ba-4549-9bc9-4720ddc78bca)
 ![picture-14](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e96a98e3-753f-4662-9bea-deaf863edd28)
