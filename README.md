@@ -684,7 +684,7 @@ Checking rule violation
    ![synthesis of our custom cell](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/6c367d84-4c92-498c-a314-ad5f8d1a5e04)
 *  We can see that 1554 instances of our custom cell is added to the picorv32a design.
 ### Introduction to delay tables
-    ![now -168](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b502e5d0-435b-40f1-8d14-4e61411aa55a)
+   ![now -168](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b502e5d0-435b-40f1-8d14-4e61411aa55a)
 *  There are advantages of these AND gates in clock tree to reduce the power dissipation.
    ![now -169](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/3699bb8b-e5c6-48b8-9dac-4619ecd1412f)
 *  Here we have spitted the load of 4 Flops using 2 buffers. And the load of two buffers is given to the first buffer. We need to swap the buffers to gates, as shown. This technique is called clock gating. We have varying        input transitions at the input of the buffer and varying output load at the output of any buffer. So, we have a variety of delays. To solve this, we have delay tables.
@@ -722,19 +722,36 @@ Checking rule violation
       ![slack for typical corner](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5a79881d-37e0-421c-8b49-32dc78d92449)
       ![slack for typical corner2 ](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/f0da2dfd-634f-49ad-a363-776d37269f08)
       ![checking timing analysis with ideal clocks](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a4fd5e49-fafa-46e9-9461-1415f9eb1772)
-!     ![checking timing analysis with ideal clocks2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/97239240-6b04-4e61-8473-c1e4ba3efd09)
+      ![checking timing analysis with ideal clocks2](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/97239240-6b04-4e61-8473-c1e4ba3efd09)
       ![checking timing analysis with ideal clocks3](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/9af35104-47ea-464c-89db-2518ae222f1f)
       ![checking timing analysis with ideal clocks4](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/fb4a1e23-ad9e-44d1-95c3-2a46df9faec3)
       ![checking timing analysis with ideal clocks5](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/de441b04-2907-4a8d-89ff-b106bcf3f431)
       ![chec](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/05948729-46b0-4438-b1a3-27e5648515e9)
       ![checking timing analysis with ideal clocks6](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/a48553b0-290e-44b5-abf7-8dc92bb24868)
+      ![now-10](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/08d79c1d-4475-4055-b4b8-96329f4f8e27)
+      ![now-11](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/43066092-e976-4120-9406-b41e2d8d8b46)
+ * Check if vsd inverter is added after floorplan stage. Check layout after placement stage
+      ![now -175](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/cab87e83-3bab-49d5-af9c-76a8726a88cb)
+      ![now-12](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ae38df87-c77a-490d-82a3-d695f939f30d)
+      ![now -13](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b69970ca-a3f3-4373-859a-82a3e8e2ea49)
+*  We can see that vsd inverter is inserted after placement stage. Abatement between the cells takes place to share power and ground between the cells.
+      ![now -176](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/5f456c45-da03-48f1-bdec-b2471a8eebc0)
+   ### Static Timing Analysis (With Ideal Clocks)
+*  In ideal clock network clock tree is not yet built.
+*  Identifying combinational path:
+*  Pre-layout STA will not yet include effects of clock buffers and net-delay due to RC parasitics (wire delay will be derived from PDK library wire model).
+   ![now -177](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/c061dc6a-9725-4ed3-a385-223dd4bfa170)
+*  Setup timing analysis equation is:
+   Θ < T - S - SU Θ = Combinational delay which includes clk to Q delay of launch flop and internal propagation delay of all gates between launch and capture flop T = Time period, also called the required time S = Setup time.    As demonstrated below, signal must settle on the middle (input of Mux 2) before clock transits to 1 so the delay due to Mux 1 must be considered, this delay is the setup time.
+   ![now -178](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/72659999-9cbe-42b7-951c-b4beba742536)
+   SU = Setup uncertainty due to jitter which is temporary variation of clock period. This is due to non-idealities of PLL/clock source.
+   ![now -179](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/534ae423-f119-4d09-ac24-dc61059c2657)
+   ![now -180](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/53f7e9a2-aa81-4fb6-ac9f-05962de985cb)
+   ![now -180](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/1d6c9501-6b53-4053-86f4-a33d1220d4ba)
+   Checking Timing analysis with ideal clocks using openSTA Lab:
 
-![now-10](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/08d79c1d-4475-4055-b4b8-96329f4f8e27)
-
-![now-11](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/43066092-e976-4120-9406-b41e2d8d8b46)
-
-![now-12](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/ae38df87-c77a-490d-82a3-d695f939f30d)
-![now -13](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/b69970ca-a3f3-4373-859a-82a3e8e2ea49)
+   
+   
 ![now -14](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/e395a6ad-ea24-40e3-a534-dae3eddf7b44)
 
 ![now-15](https://github.com/RaagaS04/VSDPDWORKSHOP/assets/111308508/936354a9-9492-4af5-97ba-c8d2c8d3e9aa)
